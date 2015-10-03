@@ -1,0 +1,116 @@
+<!--to convert go here :
+http://www.accessify.com/tools-and-wizards/developer-tools/html-javascript-convertor/
+-->
+<toaster-container toaster-options="{'time-out': 3000}"></toaster-container>
+
+<div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <b>Gamma Dashboard ver {{version}}</b>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Gamma Dashboard
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary" ng-click="Parse()">
+                            Parse
+                        </button>
+                        <button type="submit" class="btn btn-primary" ng-click="Download()" ng-disabled="!isDone">
+                            Download All
+                        </button>
+                        <button type="submit" class="btn btn-danger" ng-click="Stop()">
+                            Stop
+                        </button>
+                        <button type="button" class="btn btn btn-default" ng-csv="getArrayForCsv()"
+                                filename="dashboard.csv"
+                                csv-header="['Username', 'TotalQB', 'Rebates', 'TotalProductVoucher','ActiveAccnt','NewEntry','ReadyRorEncashment','EncashmentHistory']">
+                            Export
+                        </button>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>
+                                #
+                            </th>
+                            <th>
+                                Booking Code
+                            </th>
+                            <th>
+                                Passenger Name
+                            </th>
+                            <th>State</th>
+                            <th>
+                                Promo Code
+                            </th>
+                            <th>
+                                Meter Fare
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                            </th>
+                            <th>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="user in users">
+                            <td>
+                                <span ng-bind="user.bookingCode"/>
+                            </td>
+                            <td>
+                                <span ng-bind="user.passenger"/>
+                            </td>
+                            <td>
+                                <span ng-bind="user.state"/>
+                            </td>
+                            <td><span ng-bind="user.amount"/></td>
+                            <td ng-class="{danger: user.IsError, success: user.IsSuccess}">
+                                {{user.Status}}
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="user.WasDownloaded"/>
+                            </td>
+                            <td>
+                                <button ng-click="LoginToDownloadOneItem(user)" ng-disabled="!isDone">
+                                    {{user.DownloadBtn}}
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix" ng-show="isInputFieldsAreValid">
+        <div class="col-md-12 column">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Logs
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <tr ng-repeat="log in logs.slice().reverse() track by $index">
+                            <th>
+                                {{log}}
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
