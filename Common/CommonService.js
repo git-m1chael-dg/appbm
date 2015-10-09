@@ -1,4 +1,4 @@
-hpiModule.service('CommonFunc', function ($http,toaster) {
+gammaModule.service('CommonFunc', function ($http,toaster) {
         var commonFunc = function($http,toaster) {
             var self = this;
 

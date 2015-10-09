@@ -1,4 +1,4 @@
-app.directive('dashboard', function () {
+gammaModule.directive('dashboard', function () {
         return {
             restrict: 'E',
             template: dashboardTemplate

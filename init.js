@@ -1,8 +1,9 @@
 
-$('bookings_table_additional_info_content').append("<div ng-controller='DashboardCtrl'><dashboard></dashboard></div>");
+//$("div.box-padding.narrow-horizontal").append("<div id='gammaApp' ng-app='gammaApp' ng-controller='DashboardCtrl'><dashboard></dashboard></div>");
 
-var app = angular.module('bookmarklet', ['toaster','ngSanitize', 'ngCsv']);
+//var gammaModule = angular.module('bookmarklet', ['toaster','ngSanitize', 'ngCsv','gamma']);
 
-app.run(function ($rootScope) {
-    $rootScope.URL = location.href;
-});
+$("div.box-padding.narrow-horizontal").append("<div id='gammaApp'></div>");
+
+
+

@@ -10,7 +10,7 @@ function Booking(index, bookingCode) {
     self.downloadBtn='Download';
 }
 
-app.controller('DashboardCtrl', function ($scope, $http, $timeout, toaster, CommonFunc) {
+gammaModule.controller('DashboardCtrl', function ($scope, $http, $timeout, toaster, CommonFunc) {
 
     var self = this;
 
