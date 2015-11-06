@@ -15,6 +15,13 @@
     .controller('MyCtrl', ['$scope',function($scope) {
         $scope.source = '';
         $scope.items = [];
+		$scope.getTotal = function(){
+			var total = 0;
+			angular.forEach($scope.items, function (item) {
+					total+=parseInt(item.total);
+				});
+			return total;
+		};
         $scope.parse = function () {
             $scope.items = [];
             angular.forEach(angular.fromJson($scope.source), function (item) {
@@ -23,13 +30,24 @@
                 });
             });
         };
+		$scope.clear = function () {
+            $scope.items = [];
+        };
+		$scope.additems = function () {
+            angular.forEach(angular.fromJson($scope.source).results, function (item) {
+                $scope.items.push(item);
+            });
+        };
     }]);
 </script>
 <div ng-controller="MyCtrl">
     <label>source</label>
-    <textarea ng-model="source" ng-change="parse()"></textarea>
-    <button ng-click="parse()">Parse</button>
-    <table>
+    <textarea ng-model="source"></textarea>
+	<button ng-click="additems()">Add</button>
+    <button ng-click="clear()">Clear</button>
+	<button ng-click="parse()">Parse</button>
+	<label>Total <span ng-bind="getTotal()"></span></label>
+	<table>
         <tr ng-repeat="item in items track by $index">
             <td>
                 <span ng-bind="item.created_at"/>
